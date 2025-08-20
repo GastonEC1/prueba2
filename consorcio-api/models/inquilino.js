@@ -1,43 +1,14 @@
-// models/inquilino.js
-
 const mongoose = require('mongoose');
 
 const inquilinoSchema = new mongoose.Schema({
-    nombre: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    email: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    telefono: {
-        type: String,
-        trim: true
-    },
-    unidad: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    tipo_unidad: {
-        type: String,
-        enum: ['Departamento', 'Local'],
-        default: 'Departamento'
-    },
-    notas: {
-        type: String,
-        trim: true
-    },
+    nombre: String,
+    email: String,
+    telefono: String,
+    unidad: String,
     consorcio: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Consorcio',
-        required: true
+        ref: 'Consorcio' // <-- Referencia al modelo Consorcio
     }
-}, { timestamps: true });
+});
 
-const Inquilino = mongoose.model('Inquilino', inquilinoSchema);
-
-module.exports = Inquilino;
+module.exports = mongoose.model('Inquilino', inquilinoSchema);

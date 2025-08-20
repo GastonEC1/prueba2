@@ -1,17 +1,13 @@
-// models/consorcio.js
-
 const mongoose = require('mongoose');
 
 const consorcioSchema = new mongoose.Schema({
     nombre: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     direccion: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     pisos: {
         type: Number,
@@ -21,20 +17,14 @@ const consorcioSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    portero_nombre: {
-        type: String,
-        trim: true
-    },
-    portero_telefono: {
-        type: String,
-        trim: true
-    },
-    portero_horario: {
-        type: String,
-        trim: true
-    }
-}, { timestamps: true });
+    inquilinos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Inquilino'
+    }],
+    activos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Activo'
+    }]
+});
 
-const Consorcio = mongoose.model('Consorcio', consorcioSchema);
-
-module.exports = Consorcio;
+module.exports = mongoose.model('Consorcio', consorcioSchema);

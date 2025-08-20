@@ -1,23 +1,31 @@
-import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
-import {Link} from "react-router-dom"
+import React from 'react';
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { FaBuilding, FaSignOutAlt } from 'react-icons/fa';
 
-function AppNavbar(){
-    return(
-        <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
-            <Container>
-                <Navbar.Brand as={Link} to="/" >Gestion de Consorcios</Navbar.Brand>
-                <Navbar.Brand aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/consorcios">Consorcios</Nav.Link>
-                        <Nav.Link as={Link} to="/inquilinos">Inquilinos</Nav.Link>
-                        <Nav.Link as={Link} to="/activos">Activos</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    )
+function AppNavbar({ onLogout }) {
+  return (
+    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+      <Container>
+        <Navbar.Brand as={LinkContainer} to="/">
+          <Nav.Link>Gestión de Consorcios</Nav.Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <LinkContainer to="/consorcios">
+              <Nav.Link><FaBuilding /> Consorcios</Nav.Link>
+            </LinkContainer>
+          </Nav>
+          <Nav>
+            <Button variant="outline-light" onClick={onLogout}>
+              <FaSignOutAlt /> Salir
+            </Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
-export default AppNavbar
+export default AppNavbar;
